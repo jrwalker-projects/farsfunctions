@@ -1,0 +1,12 @@
+---
+title: "fasrsfunctions Read Me"
+author: "John Walker"
+date: `r sys.Date'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ 
