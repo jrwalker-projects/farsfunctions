@@ -1,0 +1,64 @@
+---
+title: "Using farsfunctions"
+author: "John Walker"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using farsfunctions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+##### *Support functions for rocessing US traffic accident data*
+The `farsfunctions` package assists in reading and summarizing of US Department of Transportation data compiled by the National
+Highway Traffic Safety Administration (NHTSA) provided in the Fatality Analysis Reporting System (FARS). See the references 
+section below for access to data, data descriptions and much more about FARS.
+
+## Installation
+
+The latest version of the `farsfunctions` package is installed from GitHub as shown here: 
+```{r install, eval=FALSE}
+#Can skip this line if devtools is already installed
+install.packages("devtools")
+
+library(devtools)
+install_github("jrwalker-projects/farsfunctions") #installs the package
+library(farsfunctions) #loads package into R
+```
+
+## Accident data files
+
+```{r setwd}
+#setwd(system.file("extdata",package="farsfunctions"))
+#knitr::opts_knit$set(root.dir = normalizePath(".."))
+knitr::opts_knit$set(root.dir = system.file("extdata",package="farsfunctions"))
+dir()
+getwd()
+```
+
+```{r dir}
+dir()
+getwd()
+```
+
+## Using the farsfunctions 
+
+### Reading accident files for a set of years
+
+### Summarizing accidents
+
+### Plot a map of accident locations for a US state in a given year
+
+## References
+For file downloads and more information on FARS data see
+[the main FARS website:](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
+
+as of October 2017 see [the latest manual on FARS data:](https://crashstats.nhtsa.dot.gov/Api/Public/Publication/812499)
+
+or see the current document list [NCSA publications](https://crashstats.nhtsa.dot.gov/#/DocumentTypeList/22)
+
+## Acknowledgements
+None of the R functions were written by me. They were provided by person(s) unknown as part of the Coursera learning
+platform as part of the Johns-Hopkins course "R Packages". My only role as part of the coursework was to document the functions,
+create an R package and show that the package can be built and deployed. All of the code, documentation and packaging is 
+available on GitHub at the location shown in the Installation section above.
