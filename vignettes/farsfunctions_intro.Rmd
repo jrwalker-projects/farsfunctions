@@ -8,13 +8,17 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+```{r libs, echo=FALSE}
+library(knitr)
+library(farsfunctions)
+```
 
-##### *Support functions for rocessing US traffic accident data*
+##### *Functions for processing US traffic accident data*
 The `farsfunctions` package assists in reading and summarizing of US Department of Transportation data compiled by the National
 Highway Traffic Safety Administration (NHTSA) provided in the Fatality Analysis Reporting System (FARS). See the references 
 section below for access to data, data descriptions and much more about FARS.
 
-## Installation
+## Package installation
 
 The latest version of the `farsfunctions` package is installed from GitHub as shown here: 
 ```{r install, eval=FALSE}
@@ -27,38 +31,69 @@ library(farsfunctions) #loads package into R
 ```
 
 ## Accident data files
-
-```{r setwd}
-#setwd(system.file("extdata",package="farsfunctions"))
-#knitr::opts_knit$set(root.dir = normalizePath(".."))
-knitr::opts_knit$set(root.dir = system.file("extdata",package="farsfunctions"))
-dir()
-getwd()
+```{r setwd, echo=FALSE}
+knitr::opts_knit$set(root.dir = system.file("extdata",package="farsfunctions")) #sets knitr wd to package inst/extdata
 ```
 
-```{r dir}
+The `farsfunctions` package works with accident files in the **current working directory**. Names of the files are expected to be 
+of the form *'accident_YYYY.csv.bz2'* where YYYY is the year of the file so specifically 'accident_2015.csv.bz2' for the 2015 accident
+file. If the files are not found, are not .csv files a message is returned. The files used in this vignette are:
+```{r farsdir, collapse=TRUE}
 dir()
-getwd()
 ```
 
 ## Using the farsfunctions 
 
 ### Reading accident files for a set of years
+The function `make_file_name` creates a file name string using a year provided so this can be combined with the function
+`fars_read` to unzip and read the csv file returning accident data as a tibble data frame, for example
+```{r farsread}
+accidents2016 <- fars_read(make_filename(2016)) #reads accident_2016.csv.bz2
+```
+```{r readout, echo=FALSE}
+kable(head(accidents2016[,1:9]))
+```
 
 ### Summarizing accidents
+`fars_read_years` can read multiple years of accident files returning a list of accidents by year and month. The function
+`fars_summarize_years` calls `fars_read_years` to acquire such a list and summarize accident counts in a table by year and month:
+```{r summarize}
+my_summary <- fars_summarize_years(2015:2016)
+```
+```{r summout, echo=FALSE}
+kable(my_summary)
+```
 
 ### Plot a map of accident locations for a US state in a given year
+The `fars_map_state` function plots a map of a requested US state placing a dot at locations of accidents in that state for a 
+given year. For a list of state codes see the reference sections below. To produce a map for the US state of Alabama (state code
+1) in the 2016 the call looks like
+```{r mapstate}
+fars_map_state(1, 2016) #map Alabama accident locations for 2016
+```
 
 ## References
-For file downloads and more information on FARS data see
-[the main FARS website:](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
+To download FARS For file downloads and more information on FARS data see
+[the FARS website:](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
 
-as of October 2017 see [the latest manual on FARS data:](https://crashstats.nhtsa.dot.gov/Api/Public/Publication/812499)
+as of October 2017 see [the latest manual on FARS data](https://crashstats.nhtsa.dot.gov/Api/Public/Publication/812499)
 
-or see the current document list [NCSA publications](https://crashstats.nhtsa.dot.gov/#/DocumentTypeList/22)
+or see the current available documents [NCSA publications](https://crashstats.nhtsa.dot.gov/#/DocumentTypeList/22)
+
+#### FARS State Codes
+At the time this vignette is written the following state codes are in use. To be sure check the latest manual.
+```{r states, echo=FALSE}
+states <- data.frame(StateCode=c(1:53), StateName=c('Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Islands (since 2004)','Virginia','Washington','West Virgina','Wisconsin','Wyoming')
+)
+```
+```{r statelist, echo=FALSE}
+kable(states)
+```
 
 ## Acknowledgements
-None of the R functions were written by me. They were provided by person(s) unknown as part of the Coursera learning
-platform as part of the Johns-Hopkins course "R Packages". My only role as part of the coursework was to document the functions,
-create an R package and show that the package can be built and deployed. All of the code, documentation and packaging is 
-available on GitHub at the location shown in the Installation section above.
+None of the code for the R functions in this package was written by me. They were provided by person(s) unknown as part of 
+the Coursera learning platform as part of the Johns-Hopkins course 
+[Building R Packages](https://www.coursera.org/learn/r-packages/home/welcome).
+My role as part of the coursework is to document the functions, create an R package and show that the package can be 
+built and deployed. All of the code, documentation and packaging is available on GitHub at the location shown in the 
+Installation section above.
