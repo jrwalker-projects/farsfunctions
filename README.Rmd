@@ -9,4 +9,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
- 
+##### *Functions for processing US traffic accident data*
+The `farsfunctions` package assists in reading and summarizing of US Department of Transportation data compiled by the National
+Highway Traffic Safety Administration (NHTSA) provided in the Fatality Analysis Reporting System (FARS). See the references 
+section below for access to data, data descriptions and much more about FARS.
+
+## Package installation
+
+The latest version of the `farsfunctions` package is installed from GitHub as shown here: 
+```{r install, eval=FALSE}
+#Can skip this line if devtools is already installed
+install.packages("devtools")
+
+library(devtools)
+install_github("jrwalker-projects/farsfunctions") #installs the package
+library(farsfunctions) #loads package into R
+```
+
+Use of the functions is described in the package vignette.
+
+[![Travis build status](https://travis-ci.org/jrwalker-projects/farsfunctions.svg?branch=master)](https://travis-ci.org/jrwalker-projects/farsfunctions)
+  
