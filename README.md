@@ -29,4 +29,4 @@ Use of these functions is described in the package vignette.<cr>
 For more information on FARS data see [the FARS website:](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
 
 [![Travis build status](https://travis-ci.org/jrwalker-projects/farsfunctions.svg?branch=master)](https://travis-ci.org/jrwalker-projects/farsfunctions)
-[![Coverage status](https://coveralls.io/repos/github/jrwalker-projects/farsfunctions/badge.svg)](https://coveralls.io/r/jrwalker-projects/farsfunctions?branch=master)
+[![Coverage status](https://codecov.io/gh/jrwalker-projects/farsfunctions/branch/master/graph/badge.svg)](https://codecov.io/github/jrwalker-projects/farsfunctions?branch=master)
