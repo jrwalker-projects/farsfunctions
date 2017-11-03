@@ -12,5 +12,6 @@ Imports: dplyr, graphics, magrittr, maps, readr, tidyr
 RoxygenNote: 6.0.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
