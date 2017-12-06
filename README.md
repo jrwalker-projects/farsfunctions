@@ -30,3 +30,4 @@ For more information on FARS data see [the FARS website:](https://www.nhtsa.gov/
 
 [![Travis build status](https://travis-ci.org/jrwalker-projects/farsfunctions.svg?branch=master)](https://travis-ci.org/jrwalker-projects/farsfunctions)
 [![Coverage status](https://codecov.io/gh/jrwalker-projects/farsfunctions/branch/master/graph/badge.svg)](https://codecov.io/github/jrwalker-projects/farsfunctions?branch=master)
+[![Project Status: Unsupported – The project has reached a stable, usable state but the author(s) have ceased all work on it. A new maintainer may be desired.](http://www.repostatus.org/badges/latest/unsupported.svg)](http://www.repostatus.org/#unsupported)
